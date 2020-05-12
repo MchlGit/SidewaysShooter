@@ -5,3 +5,5 @@ class Settings:
 		self.bg_color = (0,0,0)
 
 		self.texas_speed = 1
+
+		self.star_speed = 1.5

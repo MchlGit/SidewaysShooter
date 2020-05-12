@@ -2,6 +2,7 @@ import pygame
 import sys
 from settings import Settings
 from texas import Texas 
+from star import Star
 
 class SideWaysShooter: 
 
@@ -12,13 +13,21 @@ class SideWaysShooter:
 		pygame.display.set_caption("Texas Shoot 'Em")
 
 		self.texas = Texas(self)
+		self.stars = pygame.sprite.Group()
 
 
 	def run_game(self):
 		while True: 
 			self._check_events()
 			self.texas.update_position()
+			self.update_stars()
 			self._update_screen()
+
+	def update_stars(self): 
+		self.stars.update()
+		for star in self.stars.copy():
+			if star.rect.left >= self.settings.screen_width: 
+				self.stars.remove(star)
 
 
 	def _check_events(self): 
@@ -35,6 +44,12 @@ class SideWaysShooter:
 			self.texas.moving_down = True
 		elif event.key == pygame.K_UP:
 			self.texas.moving_up = True
+		elif event.key == pygame.K_SPACE: 
+			self._shoot_star()
+
+	def _shoot_star(self): 
+		new_star = Star(self)
+		self.stars.add(new_star)
 
 	def _key_up_events(self, event):
 		if event.key == pygame.K_DOWN: 
@@ -45,6 +60,8 @@ class SideWaysShooter:
 
 	def _update_screen(self): 
 		self.screen.fill(self.settings.bg_color)
+		for star in self.stars.sprites(): 
+			star.blitme()
 		self.texas.blitme()
 		pygame.display.flip()
 

@@ -1,10 +1,10 @@
 import pygame 
 
 class Texas: 
-	def __init__(self,sideways_shooter): 
-		self.screen = sideways_shooter.screen
+	def __init__(self,shooter_game): 
+		self.screen = shooter_game.screen
 		self.screen_rect = self.screen.get_rect()
-		self.settings = sideways_shooter.settings
+		self.settings = shooter_game.settings
 
 		self.image = pygame.image.load("images/texas.bmp")
 		self.rect = self.image.get_rect()
