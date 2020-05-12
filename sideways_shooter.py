@@ -48,8 +48,9 @@ class SideWaysShooter:
 			self._shoot_star()
 
 	def _shoot_star(self): 
-		new_star = Star(self)
-		self.stars.add(new_star)
+		if (len(self.stars) < self.settings.stars_allowed):
+			new_star = Star(self)
+			self.stars.add(new_star)
 
 	def _key_up_events(self, event):
 		if event.key == pygame.K_DOWN: 

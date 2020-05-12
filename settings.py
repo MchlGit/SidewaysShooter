@@ -7,3 +7,4 @@ class Settings:
 		self.texas_speed = 1
 
 		self.star_speed = 1.5
+		self.stars_allowed = 4
